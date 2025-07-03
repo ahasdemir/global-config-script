@@ -10,10 +10,15 @@ if not exist "%DEST_DIR%" (
 )
 
 if exist "%SOURCE_FILE_1%" (
-    copy "%SOURCE_FILE_1%" "%DEST_DIR%"
+    echo Merging options.txt with intelligent update...
+    powershell -ExecutionPolicy Bypass -File "C:\Users\ahmet\AppData\Roaming\PrismLauncher\addons\merge-options.ps1" -SourceFile "%SOURCE_FILE_1%" -DestFile "%DEST_DIR%\options.txt"
     if errorlevel 1 (
-        echo Failed to copy: "%SOURCE_FILE_1%"
-        exit /b 1
+        echo Failed to merge options.txt, falling back to simple copy
+        copy "%SOURCE_FILE_1%" "%DEST_DIR%"
+        if errorlevel 1 (
+            echo Failed to copy: "%SOURCE_FILE_1%"
+            exit /b 1
+        )
     )
 ) else (
     echo Source file does not exist: "%SOURCE_FILE_1%"
