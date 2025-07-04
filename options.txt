@@ -32,7 +32,7 @@ forceUnicodeFont:false
 fov:0.625
 fovEffectScale:1.0
 fullscreen:false
-gamma:0.5
+gamma:15.0
 glDebugVerbosity:1
 glintSpeed:0.5
 glintStrength:0.75

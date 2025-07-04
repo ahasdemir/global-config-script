@@ -2,7 +2,7 @@
 set "SOURCE_FILE_1=%INST_MC_DIR%\options.txt"
 set "SOURCE_FILE_2=%INST_MC_DIR%\servers.dat"
 
-set "DEST_DIR=C:\Users\ahmet\AppData\Roaming\PrismLauncher\addons\"
+set "DEST_DIR=%appdata%\PrismLauncher\global-config-script\"
 
 REM Check if destination directory exists
 if not exist "%DEST_DIR%" (
