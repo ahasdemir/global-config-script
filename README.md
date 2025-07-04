@@ -40,10 +40,10 @@ The system consists of three main files that work together to manage Minecraft c
 - PrismLauncher with custom commands enabled
 
 ### Setup
-1. Place all files in: `C:\Users\[username]\AppData\Roaming\PrismLauncher\addons\`
+1. Place all files in: `C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\`
 2. Configure PrismLauncher instance settings:
-   - **Pre-launch command**: `"C:\Users\[username]\AppData\Roaming\PrismLauncher\addons\options-changer-startup.bat"`
-   - **Post-exit command**: `"C:\Users\[username]\AppData\Roaming\PrismLauncher\addons\options-changer-exit.bat"`
+   - **Pre-launch command**: `"C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\options-changer-startup.bat"`
+   - **Post-exit command**: `"C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\options-changer-exit.bat"`
 
 ### Environment Variables
 The scripts use `%INST_MC_DIR%` which is automatically provided by PrismLauncher pointing to the current instance directory.
@@ -54,8 +54,9 @@ The scripts use `%INST_MC_DIR%` which is automatically provided by PrismLauncher
 - ✅ **Preserves existing settings** - Your custom configurations stay intact
 - ✅ **Updates changed values** - Modified settings are synchronized
 - ✅ **Adds new settings** - New options from mods/updates are included
+- ✅ **Excludes protected settings** - Certain settings are never transferred
 - ✅ **Alphabetical sorting** - Keeps options.txt organized
-- ✅ **Detailed logging** - Shows what was added/updated during merge
+- ✅ **Detailed logging** - Shows what was added/updated/excluded during merge
 
 ### Server List Handling
 - ✅ **Direct copy** - `servers.dat` is copied as-is (binary format)
@@ -66,22 +67,52 @@ The scripts use `%INST_MC_DIR%` which is automatically provided by PrismLauncher
 - ✅ **Path validation** - Checks if source and destination paths exist
 - ✅ **Error reporting** - Clear messages for troubleshooting
 
+## 📊 Merge Logic
+
+### When merging `options.txt`:
+```
+Existing Setting + Same Value = No Change
+Existing Setting + New Value = Update
+Missing Setting + New Value = Add
+Old Setting + Not in New = Keep
+Excluded Setting = Never Transfer
+```
+
+### Protected Settings
+The following settings are **never transferred** between instances:
+- `resourcePacks` - Resource pack list (allows different packs per instance)
+- `incompatibleResourcePacks` - Incompatible resource pack list
+
+### Example Merge Output:
+```
+Excluded: resourcePacks (not transferred)
+Excluded: incompatibleResourcePacks (not transferred)
+Added: newModSetting = true
+Updated: fov = 0.45
+Updated: renderDistance = 16
+Merge completed successfully!
+Added 1 new settings, updated 2 existing settings, excluded 2 settings
+```
+
 ## 🎯 Use Cases
 
 ### Multi-Instance Gaming
 - Play different modpacks with consistent settings
 - Switch between Minecraft versions seamlessly
 - Maintain personalized controls across all instances
+- **Use different resource packs** - Each instance keeps its own resource pack list
 
 ### Settings Backup
 - Automatic backup of all configuration changes
 - Central storage for easy restoration
 - Version-safe settings management
+- **Protected settings** - Critical instance-specific settings are preserved
 
 ### Mod Compatibility
 - Handles new mod settings automatically
 - Preserves existing mod configurations
 - Smart integration of updated mod options
+- **Instance-specific exclusions** - Certain mod settings stay per-instance
 
 ## 🛠️ Troubleshooting
 
@@ -96,7 +127,7 @@ powershell -ExecutionPolicy Bypass -File merge-options.ps1
 #### Script Not Found
 Ensure paths in batch files match your actual file locations:
 ```batch
-set "DEST_DIR=C:\Users\[your-username]\AppData\Roaming\PrismLauncher\addons\"
+set "DEST_DIR=C:\Users\[your-username]\AppData\Roaming\PrismLauncher\global-config-script\"
 ```
 
 #### Merge Failures

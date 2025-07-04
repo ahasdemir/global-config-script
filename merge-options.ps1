@@ -40,14 +40,25 @@ function Merge-OptionsFile {
         }
     }
     
+    # Define excluded settings that should not be transferred
+    $excludedSettings = @("resourcePacks", "incompatibleResourcePacks")
+    
     # Process source file and update/add settings
     $updatedCount = 0
     $addedCount = 0
+    $excludedCount = 0
     
     foreach ($line in $sourceLines) {
         if ($line -match '^([^:]+):(.*)$') {
             $key = $matches[1]
             $value = $matches[2]
+            
+            # Skip excluded settings
+            if ($excludedSettings -contains $key) {
+                $excludedCount++
+                Write-Host "Excluded: $key (not transferred)"
+                continue
+            }
             
             if ($existingSettings.ContainsKey($key)) {
                 if ($existingSettings[$key] -ne $value) {
@@ -73,7 +84,7 @@ function Merge-OptionsFile {
     try {
         $outputLines | Out-File -FilePath $Dest -Encoding UTF8
         Write-Host "Merge completed successfully!"
-        Write-Host "Added $addedCount new settings, updated $updatedCount existing settings"
+        Write-Host "Added $addedCount new settings, updated $updatedCount existing settings, excluded $excludedCount settings"
         return $true
     } catch {
         Write-Host "Failed to write to destination file: $Dest"

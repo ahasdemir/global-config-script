@@ -29,10 +29,10 @@ enableVsync:false
 entityDistanceScaling:1.0
 entityShadows:true
 forceUnicodeFont:false
-fov:0.5
+fov:0.625
 fovEffectScale:1.0
 fullscreen:false
-gamma:15.0
+gamma:0.5
 glDebugVerbosity:1
 glintSpeed:0.5
 glintStrength:0.75
@@ -79,9 +79,9 @@ key_firmament.config.wardrobe-keybinds.slot-6:key.keyboard.unknown
 key_firmament.config.wardrobe-keybinds.slot-7:key.keyboard.unknown
 key_firmament.config.wardrobe-keybinds.slot-8:key.keyboard.unknown
 key_firmament.config.wardrobe-keybinds.slot-9:key.keyboard.unknown
-key_iris.keybind.reload:key.keyboard.r
-key_iris.keybind.shaderPackSelection:key.keyboard.o
-key_iris.keybind.toggleShaders:key.keyboard.k
+key_iris.keybind.reload:key.keyboard.unknown
+key_iris.keybind.shaderPackSelection:key.keyboard.unknown
+key_iris.keybind.toggleShaders:key.keyboard.unknown
 key_iris.keybind.wireframe:key.keyboard.unknown
 key_key.advancements:key.keyboard.unknown
 key_key.attack:key.mouse.left
@@ -113,7 +113,7 @@ key_key.gammautils.increaseGamma:key.keyboard.unknown
 key_key.gammautils.increaseNightVision:key.keyboard.unknown
 key_key.gammautils.maxGamma:key.keyboard.unknown
 key_key.gammautils.minGamma:key.keyboard.unknown
-key_key.gammautils.nightVisionToggle:key.keyboard.h
+key_key.gammautils.nightVisionToggle:key.keyboard.n
 key_key.hotbar.1:key.keyboard.1
 key_key.hotbar.2:key.keyboard.2
 key_key.hotbar.3:key.keyboard.3
@@ -192,7 +192,7 @@ key_modernwarpmenu.key.openWarpMenu:key.keyboard.m
 key_skyocean.item_search.keybind:key.keyboard.o
 key_skyocean.item_value.keybind:key.keyboard.j
 key_zoomify.key.zoom:key.keyboard.c
-key_zoomify.key.zoom.secondary:key.keyboard.f6
+key_zoomify.key.zoom.secondary:key.keyboard.unknown
 lang:en_us
 lastServer:
 mainHand:"right"
