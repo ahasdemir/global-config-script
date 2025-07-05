@@ -43,9 +43,9 @@ function Merge-OptionsFile {
     # Define excluded settings that should not be transferred
     $excludedSettings = @("resourcePacks", "incompatibleResourcePacks")
     
-    # Process source file and update/add settings
+    # Process source file and only update existing settings (don't add new ones)
     $updatedCount = 0
-    $addedCount = 0
+    $skippedCount = 0
     $excludedCount = 0
     
     foreach ($line in $sourceLines) {
@@ -60,16 +60,16 @@ function Merge-OptionsFile {
                 continue
             }
             
+            # Only update if the setting already exists in the instance
             if ($existingSettings.ContainsKey($key)) {
                 if ($existingSettings[$key] -ne $value) {
                     $existingSettings[$key] = $value
                     $updatedCount++
-                    Write-Host "Updated: $key = $value"
+                    Write-Host "Updated: $key = $value (was: $($existingSettings[$key]))"
                 }
             } else {
-                $existingSettings[$key] = $value
-                $addedCount++
-                Write-Host "Added: $key = $value"
+                $skippedCount++
+                Write-Host "Skipped: $key (not present in instance options)"
             }
         }
     }
@@ -84,7 +84,7 @@ function Merge-OptionsFile {
     try {
         $outputLines | Out-File -FilePath $Dest -Encoding UTF8
         Write-Host "Merge completed successfully!"
-        Write-Host "Added $addedCount new settings, updated $updatedCount existing settings, excluded $excludedCount settings"
+        Write-Host "Updated $updatedCount existing settings, excluded $excludedCount settings, skipped $skippedCount new settings"
         return $true
     } catch {
         Write-Host "Failed to write to destination file: $Dest"

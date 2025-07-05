@@ -55,10 +55,10 @@ The scripts use `%INST_MC_DIR%` which is automatically provided by PrismLauncher
 ### Smart Options Merging
 - ✅ **Preserves existing settings** - Your custom configurations stay intact
 - ✅ **Updates changed values** - Modified settings are synchronized
-- ✅ **Adds new settings** - New options from mods/updates are included
+- ✅ **Only updates existing options** - New options are not added (prevents Minecraft from deleting unused options)
 - ✅ **Excludes protected settings** - Certain settings are never transferred
 - ✅ **Alphabetical sorting** - Keeps options.txt organized
-- ✅ **Detailed logging** - Shows what was added/updated/excluded during merge
+- ✅ **Detailed logging** - Shows what was updated/excluded/skipped during merge
 
 ### Server List Handling
 - ✅ **Direct copy** - `servers.dat` is copied as-is (binary format)
@@ -75,7 +75,7 @@ The scripts use `%INST_MC_DIR%` which is automatically provided by PrismLauncher
 ```
 Existing Setting + Same Value = No Change
 Existing Setting + New Value = Update
-Missing Setting + New Value = Add
+Missing Setting + New Value = Skip (not added)
 Old Setting + Not in New = Keep
 Excluded Setting = Never Transfer
 ```
@@ -89,11 +89,11 @@ The following settings are **never transferred** between instances:
 ```
 Excluded: resourcePacks (not transferred)
 Excluded: incompatibleResourcePacks (not transferred)
-Added: newModSetting = true
-Updated: fov = 0.45
-Updated: renderDistance = 16
+Skipped: newModSetting (not present in instance options)
+Updated: fov = 0.45 (was: 0.5)
+Updated: renderDistance = 16 (was: 12)
 Merge completed successfully!
-Added 1 new settings, updated 2 existing settings, excluded 2 settings
+Updated 2 existing settings, excluded 2 settings, skipped 1 new settings
 ```
 
 ## 🎯 Use Cases
