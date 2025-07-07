@@ -32,7 +32,7 @@ forceUnicodeFont:false
 fov:0.625
 fovEffectScale:1.0
 fullscreen:false
-gamma:15.0
+gamma:0.5
 glDebugVerbosity:1
 glintSpeed:0.5
 glintStrength:0.75
@@ -194,7 +194,7 @@ key_skyocean.item_value.keybind:key.keyboard.j
 key_zoomify.key.zoom:key.keyboard.c
 key_zoomify.key.zoom.secondary:key.keyboard.unknown
 lang:en_us
-lastServer:
+lastServer:bee.mc-complex.com
 mainHand:"right"
 maxFps:260
 menuBackgroundBlurriness:5
@@ -256,4 +256,4 @@ toggleSprint:false
 touchscreen:false
 tutorialStep:none
 useNativeTransport:true
-version:3465
+version:4189

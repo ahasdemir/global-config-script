@@ -41,7 +41,7 @@ function Merge-OptionsFile {
     }
     
     # Define excluded settings that should not be transferred
-    $excludedSettings = @("resourcePacks", "incompatibleResourcePacks")
+    $excludedSettings = @("resourcePacks", "incompatibleResourcePacks", "version")
     
     # Process source file and update/add settings
     $updatedCount = 0
