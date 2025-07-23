@@ -43,9 +43,12 @@ The system consists of three main files that work together to manage Minecraft c
 1. Place all files in: `C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\`
 2. (Optional, but recommended) 
    - Replace the `C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\options.txt` file with the backup from `C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\backup-original-for-avoid-corruptions\options.txt`.
-3. Configure PrismLauncher instance settings:
+3. Configure PrismLauncher custom command settings:
    - **Pre-launch command**: `"C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\options-changer-startup.bat"`
    - **Post-exit command**: `"C:\Users\[username]\AppData\Roaming\PrismLauncher\global-config-script\options-changer-exit.bat"`
+   - It should be like that:
+    <img width="869" height="752" alt="image" src="https://github.com/user-attachments/assets/2ec04ad0-760f-4fee-a490-3f9085b50678" />
+
 
 ### Environment Variables
 The scripts use `%INST_MC_DIR%` which is automatically provided by PrismLauncher pointing to the current instance directory.
