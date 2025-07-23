@@ -1,4 +1,4 @@
-# Minecraft Options Synchronization System
+# Minecraft Options Synchronization System for Prism Launcher
 
 This system provides intelligent synchronization of Minecraft settings across different instances in PrismLauncher.
 
